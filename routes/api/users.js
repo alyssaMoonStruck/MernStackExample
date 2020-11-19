@@ -23,6 +23,8 @@ router.post('/', (req, res) => {
     .then(user => {
         if(user) 
             return res.status(400).json({ msg: 'User already exsists' })
+        
+        
         const newUser = new User({
             name, 
             email, 
@@ -30,7 +32,7 @@ router.post('/', (req, res) => {
         })
 
         //Create salt and hash
-        bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.genSalt(10, (_err, salt) => {
             bcrypt.hash(newUser.password, salt, (err, hash) => {
                 if(err) throw err
                 newUser.password = hash

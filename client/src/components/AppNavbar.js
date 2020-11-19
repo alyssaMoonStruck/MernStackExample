@@ -10,6 +10,9 @@ import {
     Container,
     } from "reactstrap";
 
+import RegisterModal from './auth/RegisterModal'
+import Logout from './auth/Logout'
+
     class AppNavbar extends Component {
     state = {
         isOpen: false,
@@ -17,7 +20,7 @@ import {
 
     toggle = () => {
         this.setState({
-        isOpen: !this.state.isOPen,
+        isOpen: !this.state.isOpen,
         });
 };
 
@@ -28,12 +31,13 @@ return (
         <Container>
         <NavbarBrand href="/">ShoppingList</NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
-        <Collapse isOPen={this.state.isOpen} navebar>
+        <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
             <NavItem>
-                <NavLink href="https://github.com/alyssaMoonStruck">
-                GitHub
-                </NavLink>
+                <RegisterModal />
+            </NavItem>
+            <NavItem>
+            <Logout />
             </NavItem>
             </Nav>
         </Collapse>

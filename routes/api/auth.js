@@ -7,6 +7,7 @@ const auth = require('../../middleware/auth')
 
 // Item Model
 const User = require('../../models/User');
+const { request } = require('express');
 
 // @route Post api/auth
 // @desc Authenticate New User
@@ -14,11 +15,12 @@ const User = require('../../models/User');
 router.post('/', (req, res) => {
     const { email, password } = req.body
 
+    console.log("request.body")
     //Simple validation
     if( !email || !password) {
         return res.status(400).json({ msg: 'Please enter all fields' })
     }
-
+    console.log(request.body)
     //Check for exsisting user
     User.findOne({ email })
     .then(user => {
